@@ -15,11 +15,7 @@ int cutRod(int* p, int n) {
 }
 
   // not working... and i want to return the right things
-int cutRod(int* s, int* p, int n) {
-  int r[n];
-  for (int i = 0; i < n; i++) {
-    r[i] = 0;
-  }
+int cutRod(int* r, int* s, int* p, int n) {
 
   int q;
   for (int j = 0; j < n; j++) {
@@ -29,8 +25,8 @@ int cutRod(int* s, int* p, int n) {
 	q = p[i] + r[j-i];
 	s[j] = i;
       }
-    }
     r[j] = q;
+    }
   }
   // change return
   return q;
@@ -41,13 +37,27 @@ main()
   int prize[]{1,1,1,1,0,0,0,1};
   int rodLength = sizeof(prize)/sizeof(int);
   int solution[rodLength];
+  int r[rodLength];
+  for (int i = 0; i < rodLength; i++) {
+    r[i] = 0;
+  }
 
 
   //  int r[]{};
 
-  cutRod(solution, prize, rodLength);
+  cutRod(r, solution, prize, rodLength);
   cout << "Best prize " << cutRod(prize, rodLength) << endl;
-  cout << "solution " << solution << "r " << "insert r here later" << endl;
+  cout << "solution ";
+
+  for (int i = 0; i < rodLength; i++) {
+    cout << solution[i] << " ";
+  }
+
+  cout << endl << "r ";
+  for (int i = 0; i < rodLength; i++) {
+    cout << r[i] << " ";
+  }
+  cout << endl;
   return 0;
 }
 
